@@ -56,8 +56,10 @@ module.exports = function(sails) {
                                     //attach Errors key in error object
                                     //as a place to lookup for our 
                                     //custom errors messages
-                                    error.Errors =
-                                        validateCustom(model, error.ValidationError);
+                                    if (error.ValidationError) {
+                                        error.Errors =
+                                            validateCustom(model, error.ValidationError);
+                                    }
 
                                     callback(error);
                                 } else {
