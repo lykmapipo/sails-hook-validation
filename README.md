@@ -44,13 +44,15 @@ module.exports = {
     }
 };
 ```
-- Now you can call your `Model.create` and `Model.update` and other static model method that invoke `Model.validate()`. If there is any validation error `sails-hook-validation` will put your custom errors message in `error.Errors` in the error object returned by those methods.
+- Now you can call your `Model.create`, `Model.update` and other static model method that invoke `Model.validate()`. If there is any validation error `sails-hook-validation` will put your custom errors message in `error.Errors` in the error object returned by those methods in your `callback`.
 ```js
 //anywhere in your codes if
 //you invoke
  User
     .create({}, function(error, user) {
-
+        //you will expect the following
+        //error to exist based on 
+        //your custom validation messages
         expect(error.Errors.email).to.exist;
 
         expect(error.Errors.email[0].message)
@@ -68,7 +70,7 @@ module.exports = {
     });
 ```
 
-*Note: `sails-hook-validation` work by patch model static `validate()`, to have custom error messages at model instance level consider using [sails-model-new](https://github.com/lykmapipo/sails-model-new)*
+*Note: `sails-hook-validation` work by patch model static `validate()`, to have custom error messages at model instance level consider using [sails-model-new](https://github.com/lykmapipo/sails-model-new). `sails-hook-validation` opt to use `error.Errors` and not to re-create or remove any properties of error object so as to remain with sails legacy options*
 
 ## Testing
 
