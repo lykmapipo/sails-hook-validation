@@ -1,0 +1,43 @@
+{
+    "name": "sails-hook-validation",
+    "version": "0.1.0",
+    "description": "Custom validation error messages for sails model",
+    "main": "index.js",
+    "sails": {
+        "isHook": true
+    },
+    "scripts": {
+        "test": "npm link && npm link sails-hook-validation && ./node_modules/.bin/mocha --timeout 10000"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lykmapipo/sails-hook-validation.git"
+    },
+    "keywords": [
+        "sails",
+        "model",
+        "validation",
+        "validate",
+        "custom",
+        "messages",
+        "define",
+        "error"
+    ],
+    "author": "Lally Elias",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/lykmapipo/sails-hook-validation/issues"
+    },
+    "homepage": "https://github.com/lykmapipo/sails-hook-validation",
+    "contributors": [{
+        "name": "lykmapipo",
+        "github": "https://github.com/lykmapipo"
+    }],
+    "devDependencies": {
+        "chai": "^2.0.0",
+        "faker": "^2.1.2",
+        "mocha": "^2.1.0",
+        "sails": "^0.11.0-rc10",
+        "sails-disk": "^0.10.7"
+    }
+}
