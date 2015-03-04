@@ -97,6 +97,10 @@ module.exports = function(sails) {
         //validation messages
         var messages = model.validationMessages;
 
+        if(!model.validationMessages) {
+            return customValidationMessages
+        }
+
         //grab field names
         //from the messages
         validationFields = Object.keys(messages);
