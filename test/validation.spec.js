@@ -44,18 +44,80 @@ describe('Hook#validation', function() {
             });
     });
 
-    it('should throw error because we saved the same email again', function(done) {
+    describe('Hook#validation#create()#database error', function() {
 
-        User
-            .create({
-                email: email,
-                username: username
-            }, function(error, user) {
-                expect(error.Errors.email).to.exist;
+        it('should throw unique error message using node callback style', function(done) {
 
-                expect(error.Errors.email[0].message)
-                    .to.equal(User.validationMessages.email.unique);
-                done();
-            });
+            User
+                .create({
+                    email: email,
+                    username: username
+                }, function(error, user) {
+                    expect(error.Errors.email).to.exist;
+
+                    expect(error.Errors.email[0].message)
+                        .to.equal(User.validationMessages.email.unique);
+
+                    done();
+                });
+        });
+
+        it('should not throw unique error message using node callback style', function(done) {
+
+            User
+                .findOrCreate({
+                    email: email
+                }, {
+                    email: email,
+                    username: username
+                }, function(error, user) {
+                    expect(user).to.not.be.null;
+                    expect(user.email).to.equal(email);
+
+                    done();
+                });
+        });
     });
+
+
+    describe('Hook#validation#createEach()#database error', function() {
+
+        it('should throw unique error message using node callback style', function(done) {
+
+            User
+                .createEach([{
+                    email: faker.internet.email(),
+                    username: faker.internet.userName()
+                }, {
+                    email: email,
+                    username: username
+                }], function(error, users) {
+                    expect(error.Errors.email).to.exist;
+
+                    expect(error.Errors.email[0].message)
+                        .to.equal(User.validationMessages.email.unique);
+
+                    done();
+                });
+        });
+
+        it('should not throw unique error message using node callback style', function(done) {
+
+            User
+                .findOrCreateEach({
+                    email: email
+                }, [{
+                    email: faker.internet.email(),
+                    username: faker.internet.userName()
+                }, {
+                    email: email,
+                    username: username
+                }], function(error, users) {
+                    expect(users).to.not.be.null;
+
+                    done();
+                });
+        });
+    });
+
 });

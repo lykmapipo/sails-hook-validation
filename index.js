@@ -1,3 +1,7 @@
+var path = require('path');
+var libPath = path.join(__dirname, 'lib');
+var validate = require(path.join(libPath, 'validate'));
+var create = require(path.join(libPath, 'create'));
 /**
  * @description allow model to define its custom validation error messages.
  *              It hooks into model static methods that call `validate()`,
@@ -24,15 +28,19 @@ module.exports = function(sails) {
 
             sails
                 .after(eventsToWaitFor, function() {
-                    //bind custom validation logic
+                    //bind custom errors logic
                     //and let sails to continue
-                    bindValidation();
+                    patch();
+
                     done();
                 });
         }
     };
 
-    function bindValidation() {
+    //patch sails model
+    //to add custom errors message
+    //logic
+    function patch() {
         _(sails.models)
             .forEach(function(model) {
                 //bind path validate
@@ -40,39 +48,9 @@ module.exports = function(sails) {
                 //and left derived model
                 //build from associations
                 if (model.globalId) {
-                    //remember sails defined validation
-                    //method
-                    var sailsValidate = model.validate;
-
-                    //prepare new validation methos
-                    function validate(values, presentOnly, callback) {
-                        //call sails validate
-                        sailsValidate
-                            .call(model, values, presentOnly, function(error) {
-                                //any validation error
-                                //found?
-                                if (error) {
-                                    //process sails ValidationError and
-                                    //attach Errors key in error object
-                                    //as a place to lookup for our 
-                                    //custom errors messages
-                                    if (error.ValidationError) {
-                                        error.Errors =
-                                            validateCustom(model, error.ValidationError);
-                                    }
-
-                                    callback(error);
-                                } else {
-                                    //no error
-                                    //return
-                                    callback(null);
-                                }
-                            });
-                    };
-
-                    //bind our new validate
-                    //to our models
-                    model.validate = validate;
+                    //patch sails `validate()` method
+                    validate(model, validateCustom);
+                    create(model, validateCustom);
                 }
             });
     };
