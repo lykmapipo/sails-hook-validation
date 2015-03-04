@@ -1,5 +1,7 @@
 var expect = require('chai').expect;
 var faker = require('faker');
+var email = faker.internet.email();
+var username = faker.internet.userName();
 
 describe('Hook#validation', function() {
 
@@ -30,8 +32,6 @@ describe('Hook#validation', function() {
     });
 
     it('should not throw error if all validation conditions passed', function(done) {
-        var email = faker.internet.email();
-        var username = faker.internet.userName();
 
         User
             .create({
@@ -40,6 +40,21 @@ describe('Hook#validation', function() {
             }, function(error, user) {
                 expect(error).to.be.null;
                 expect(user).to.not.be.null;
+                done();
+            });
+    });
+
+    it('should throw error because we saved the same email again', function(done) {
+
+        User
+            .create({
+                email: email,
+                username: username
+            }, function(error, user) {
+                expect(error.Errors.email).to.exist;
+
+                expect(error.Errors.email[0].message)
+                    .to.equal(User.validationMessages.email.unique);
                 done();
             });
     });
