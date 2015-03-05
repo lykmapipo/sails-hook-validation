@@ -287,4 +287,80 @@ describe('Hook#validation', function() {
 
     });
 
+    describe('Hook#update database errors', function() {
+        var _email = faker.internet.email();
+        var __email = faker.internet.email();
+
+        before(function(done) {
+            User
+                .createEach([{
+                    email: _email,
+                    username: faker.internet.userName()
+                }, {
+                    email: __email,
+                    username: faker.internet.userName()
+                }], function(error, users) {
+                    if (error) {
+                        done(error);
+                    } else {
+                        done();
+                    }
+                });
+        });
+
+        it('should throw unique error message using node callback style', function(done) {
+
+            User
+                .update({
+                    email: __email
+                }, {
+                    email: _email
+                }, function(error, user) {
+                    expect(error.Errors.email).to.exist;
+
+                    expect(error.Errors.email[0].message)
+                        .to.equal(User.validationMessages.email.unique);
+
+                    done();
+                });
+        });
+
+        it('should throw unique error message using deferred style', function(done) {
+
+            User
+                .update({
+                    email: __email
+                }, {
+                    email: _email
+                })
+                .exec(function(error, user) {
+                    expect(error.Errors.email).to.exist;
+
+                    expect(error.Errors.email[0].message)
+                        .to.equal(User.validationMessages.email.unique);
+
+                    done();
+                });
+        });
+
+        it('should throw unique error message using promise style', function(done) {
+
+            User
+                .update({
+                    email: __email
+                }, {
+                    email: _email
+                })
+                .catch(function(error) {
+                    expect(error.Errors.email).to.exist;
+
+                    expect(error.Errors.email[0].message)
+                        .to.equal(User.validationMessages.email.unique);
+
+                    done();
+                });
+        });
+
+    });
+
 });

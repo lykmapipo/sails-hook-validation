@@ -1,10 +1,12 @@
 var path = require('path');
 var libPath = path.join(__dirname, 'lib');
-var validate = require(path.join(libPath, 'validate'));
+
 var create = require(path.join(libPath, 'create'));
 var createEach = require(path.join(libPath, 'createEach'));
 var findOrCreate = require(path.join(libPath, 'findOrCreate'));
 var findOrCreateEach = require(path.join(libPath, 'findOrCreateEach'));
+var update = require(path.join(libPath, 'update'));
+var validate = require(path.join(libPath, 'validate'));
 
 /**
  * @description allow model to define its custom validation error messages.
@@ -52,8 +54,6 @@ module.exports = function(sails) {
                 //and left derived model
                 //build from associations
                 if (model.globalId) {
-                    //patch sails `validate()` method
-                    validate(model, validateCustom);
 
                     //patch sails `create()` method
                     create(model, validateCustom);
@@ -66,6 +66,12 @@ module.exports = function(sails) {
 
                     //patch sails `findOrCreateEach()` method
                     findOrCreateEach(model, validateCustom);
+
+                    //patch sails `update()` method
+                    update(model, validateCustom);
+
+                    //patch sails `validate()` method
+                    validate(model, validateCustom);
 
                 }
             });
