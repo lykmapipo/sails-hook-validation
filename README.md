@@ -53,6 +53,8 @@ Now you can call model static
 - and other static model method that invoke `Model.validate()`. 
 
 If there is any *validation or database errors* `sails-hook-validation` will put your custom errors message in `error.Errors` of the error object returned by those methods in your `callback` or `promise catch`.
+
+### create()
 ```js
 //anywhere in your codes if
 //you invoke
