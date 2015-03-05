@@ -1,6 +1,6 @@
 {
     "name": "sails-hook-validation",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "description": "Custom validation error messages for sails model",
     "main": "index.js",
     "sails": {
@@ -21,6 +21,11 @@
         "custom",
         "messages",
         "define",
+        "database",
+        "exceptions",
+        "constraints",
+        "hook",
+        "plugin",
         "error"
     ],
     "author": "Lally Elias",
