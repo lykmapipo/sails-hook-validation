@@ -7,7 +7,7 @@ sails-hook-validation
 
 [![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.svg)](https://gratipay.com/lykmapipo/)
 
-Custom validation error messages for sails model.
+Custom validation error messages for sails model. Its works with `callback`, `deferred` and `promise` style model API provided with sails.
 
 *Note: This requires Sails v0.11.0+.  If v0.11.0+ isn't published to NPM yet, you'll need to install it via Github.*
 
@@ -80,6 +80,84 @@ If there is any *validation or database errors* `sails-hook-validation` will put
         done();
     });
 ```
+
+### createEach()
+```js
+User
+    .createEach([{
+        email: faker.internet.email(),
+        username: faker.internet.userName()
+    }, {
+        email: 'otherExistingModelEmail',
+        username: username
+    }])
+    .catch(function(error) {
+        expect(error.Errors.email).to.exist;
+
+        expect(error.Errors.email[0].message)
+            .to.equal(User.validationMessages.email.unique);
+
+        done();
+    });
+```
+
+### findOrCreate()
+```js
+User
+    .findOrCreate({
+        email: faker.internet.email()
+    }, {
+        email: 'otherExistingModelEmail',
+        username: username
+    })
+    .exec(function(error, user) {
+        expect(error.Errors.email).to.exist;
+
+        expect(error.Errors.email[0].message)
+            .to.equal(User.validationMessages.email.unique);
+
+        done();
+    });
+```
+
+### findOrCreateEach()
+```js
+User
+    .findOrCreateEach(
+        [{
+            email: faker.internet.email()
+        }], [{
+            email: 'otheExistingModelEmail',
+            username: username
+        }]
+    )
+    .catch(function(error) {
+        expect(error.Errors.email).to.exist;
+
+        expect(error.Errors.email[0].message)
+            .to.equal(User.validationMessages.email.unique);
+
+        done();
+    });
+```
+
+### update()
+```js
+User
+    .update({
+        email: 'modelEmail'
+    }, {
+        email: 'otherExistingModelEmail'
+    }, function(error, user) {
+        expect(error.Errors.email).to.exist;
+
+        expect(error.Errors.email[0].message)
+            .to.equal(User.validationMessages.email.unique);
+
+        done();
+    });
+```
+#### [Bowse the spec for more examples](https://github.com/lykmapipo/sails-hook-validation/blob/master/test/validation.spec.js)
 
 *Note:* 
 - *`sails-hook-validation` work by patch model static `validate()`, `create()`, `createEach()`, `findOrCreate()`, `findOrCreateEach()` and `update()`.*
