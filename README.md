@@ -28,7 +28,8 @@ module.exports = {
         },
         email: {
             type: 'email',
-            required: true
+            required: true,
+            unique: true
         }
     },
     //model validation messages definitions
