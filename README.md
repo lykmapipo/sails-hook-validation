@@ -79,9 +79,10 @@ If there is any *validation or database errors* `sails-hook-validation` will put
     });
 ```
 
-*Note: `sails-hook-validation` work by patch model static `validate()`, `create()`, `createEach()`, `findOrCreate()`, `findOrCreateEach()` and `update()`.* 
-
-*To have custom error messages at model instance level consider using [sails-model-new](https://github.com/lykmapipo/sails-model-new). `sails-hook-validation` opt to use `error.Errors` and not to re-create or remove any properties of error object so as to remain with sails legacy options*
+*Note:* 
+- *`sails-hook-validation` work by patch model static `validate()`, `create()`, `createEach()`, `findOrCreate()`, `findOrCreateEach()` and `update()`.*
+- *To have custom error messages at model instance level consider using [sails-model-new](https://github.com/lykmapipo/sails-model-new).*
+- *`sails-hook-validation` opt to use `error.Errors` and not to re-create or remove any properties of error object so as to remain with sails legacy options*
 
 ## Testing
 
