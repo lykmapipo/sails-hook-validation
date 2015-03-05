@@ -2,6 +2,10 @@ var path = require('path');
 var libPath = path.join(__dirname, 'lib');
 var validate = require(path.join(libPath, 'validate'));
 var create = require(path.join(libPath, 'create'));
+var createEach = require(path.join(libPath, 'createEach'));
+var findOrCreate = require(path.join(libPath, 'findOrCreate'));
+var findOrCreateEach = require(path.join(libPath, 'findOrCreateEach'));
+
 /**
  * @description allow model to define its custom validation error messages.
  *              It hooks into model static methods that call `validate()`,
@@ -50,7 +54,19 @@ module.exports = function(sails) {
                 if (model.globalId) {
                     //patch sails `validate()` method
                     validate(model, validateCustom);
+
+                    //patch sails `create()` method
                     create(model, validateCustom);
+
+                    //patch sails `createEach()` method
+                    createEach(model, validateCustom);
+
+                    //patch sails `findOrCreate()` method
+                    findOrCreate(model, validateCustom);
+
+                    //patch sails `findOrCreateEach()` method
+                    findOrCreateEach(model, validateCustom);
+
                 }
             });
     };
@@ -71,13 +87,16 @@ module.exports = function(sails) {
         //custom validation error storage
         var customValidationMessages = {};
 
+        //if there is no custom 
+        //validation messages specified
+        //return empty `error.Errors`
+        if (!model.validationMessages) {
+            return customValidationMessages
+        }
+
         //grab custom model defined
         //validation messages
         var messages = model.validationMessages;
-
-        if(!model.validationMessages) {
-            return customValidationMessages
-        }
 
         //grab field names
         //from the messages
