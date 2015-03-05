@@ -52,7 +52,7 @@ Now you can call model static
 - `update()` 
 - and other static model method that invoke `Model.validate()`. 
 
-If there is any validation error or database errors `sails-hook-validation` will put your custom errors message in `error.Errors` of the error object returned by those methods in your `callback` or `promise catch`.
+If there is any *validation or database errors* `sails-hook-validation` will put your custom errors message in `error.Errors` of the error object returned by those methods in your `callback` or `promise catch`.
 ```js
 //anywhere in your codes if
 //you invoke
@@ -79,9 +79,9 @@ If there is any validation error or database errors `sails-hook-validation` will
     });
 ```
 
-*Note: `sails-hook-validation` work by patch model static `validate()`, `create()`, `createEach()`, `findOrCreate()`, `findOrCreateEach()` and `update()`. 
+*Note: `sails-hook-validation` work by patch model static `validate()`, `create()`, `createEach()`, `findOrCreate()`, `findOrCreateEach()` and `update()`.* 
 
-To have custom error messages at model instance level consider using [sails-model-new](https://github.com/lykmapipo/sails-model-new). `sails-hook-validation` opt to use `error.Errors` and not to re-create or remove any properties of error object so as to remain with sails legacy options*
+*To have custom error messages at model instance level consider using [sails-model-new](https://github.com/lykmapipo/sails-model-new). `sails-hook-validation` opt to use `error.Errors` and not to re-create or remove any properties of error object so as to remain with sails legacy options*
 
 ## Testing
 
