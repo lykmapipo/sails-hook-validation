@@ -17,7 +17,7 @@ $ npm install --save sails-hook-validation
 ```
 
 ## Usage
-- Add `validationMessages` static property in your sails model
+Add `validationMessages` static property in your sails model
 ```js
 //this is example
 module.exports = {
@@ -44,7 +44,15 @@ module.exports = {
     }
 };
 ```
-- Now you can call your `Model.create`, `Model.update` and other static model method that invoke `Model.validate()`. If there is any validation error `sails-hook-validation` will put your custom errors message in `error.Errors` in the error object returned by those methods in your `callback`.
+Now you can call your 
+- `Model.create`
+- `Model.createEach`
+- `Model.findOrCreate`
+- `Model.findOrCreateEach`
+- `Model.update` 
+- and other static model method that invoke `Model.validate()`. 
+
+If there is any validation error or database errors `sails-hook-validation` will put your custom errors message in `error.Errors` of the error object returned by those methods in your `callback` or `promise catch`.
 ```js
 //anywhere in your codes if
 //you invoke
@@ -71,7 +79,9 @@ module.exports = {
     });
 ```
 
-*Note: `sails-hook-validation` work by patch model static `validate()`, to have custom error messages at model instance level consider using [sails-model-new](https://github.com/lykmapipo/sails-model-new). `sails-hook-validation` opt to use `error.Errors` and not to re-create or remove any properties of error object so as to remain with sails legacy options*
+*Note: `sails-hook-validation` work by patch model static `validate()`, `create()`, `createEach()`, `findOrCreate()`, `findOrCreateEach()` and `update()`. 
+
+To have custom error messages at model instance level consider using [sails-model-new](https://github.com/lykmapipo/sails-model-new). `sails-hook-validation` opt to use `error.Errors` and not to re-create or remove any properties of error object so as to remain with sails legacy options*
 
 ## Testing
 
