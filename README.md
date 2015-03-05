@@ -92,6 +92,10 @@ User
         username: username
     }])
     .catch(function(error) {
+        //you will expect the following
+        //error to exist on error.Errors based on 
+        //your custom validation messages
+
         expect(error.Errors.email).to.exist;
 
         expect(error.Errors.email[0].message)
@@ -111,6 +115,10 @@ User
         username: username
     })
     .exec(function(error, user) {
+        //you will expect the following
+        //error to exist on error.Errors based on 
+        //your custom validation messages
+
         expect(error.Errors.email).to.exist;
 
         expect(error.Errors.email[0].message)
@@ -132,6 +140,10 @@ User
         }]
     )
     .catch(function(error) {
+        //you will expect the following
+        //error to exist on error.Errors based on 
+        //your custom validation messages
+        
         expect(error.Errors.email).to.exist;
 
         expect(error.Errors.email[0].message)
@@ -149,6 +161,10 @@ User
     }, {
         email: 'otherExistingModelEmail'
     }, function(error, user) {
+        //you will expect the following
+        //error to exist on error.Errors based on 
+        //your custom validation messages
+
         expect(error.Errors.email).to.exist;
 
         expect(error.Errors.email[0].message)
@@ -157,7 +173,6 @@ User
         done();
     });
 ```
-#### [Bowse the spec for more examples](https://github.com/lykmapipo/sails-hook-validation/blob/master/test/validation.spec.js)
 
 *Note:* 
 - *`sails-hook-validation` work by patch model static `validate()`, `create()`, `createEach()`, `findOrCreate()`, `findOrCreateEach()` and `update()`.*
