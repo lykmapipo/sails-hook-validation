@@ -224,40 +224,67 @@ describe('Hook#validation', function() {
 
     });
 
-    // describe('Hook#validation#findOrCreateEach()#database error', function() {
+    describe('Hook#findOrCreateEach database errors', function() {
 
-    //     it('should not throw unique error message using node callback style', function(done) {
-    //         User
-    //             .findOrCreateEach(
-    //                 ['email'], [{
-    //                     email: email,
-    //                     username: username
-    //                 }],
-    //                 function(error, users) {
-    //                     console.log(users);
+        it('should throw unique error message using node callback style', function(done) {
+            User
+                .findOrCreateEach(
+                    [{
+                        email: faker.internet.email()
+                    }], [{
+                        email: email,
+                        username: username
+                    }],
+                    function(error, users) {
+                        expect(error.Errors.email).to.exist;
 
-    //                     expect(users).to.not.be.null;
+                        expect(error.Errors.email[0].message)
+                            .to.equal(User.validationMessages.email.unique);
 
-    //                     done();
-    //                 });
-    //     });
+                        done();
+                    });
+        });
 
-    //     it('should not throw unique error message using deferred style', function(done) {
-    //         User
-    //             .findOrCreateEach([], [{
-    //                 email: email,
-    //                 username: username
-    //             }])
-    //             .exec(function(error, users) {
-    //                 console.log(users);
-    //                 console.log(error);
+        it('should throw unique error message using deferred style', function(done) {
+            User
+                .findOrCreateEach(
+                    [{
+                        email: faker.internet.email()
+                    }], [{
+                        email: email,
+                        username: username
+                    }]
+                )
+                .exec(function(error, users) {
+                    expect(error.Errors.email).to.exist;
 
-    //                 expect(users).to.not.be.null;
+                    expect(error.Errors.email[0].message)
+                        .to.equal(User.validationMessages.email.unique);
 
-    //                 done();
-    //             });
-    //     });
+                    done();
+                });
+        });
 
-    // });
+        it('should throw unique error message using promise style', function(done) {
+            User
+                .findOrCreateEach(
+                    [{
+                        email: faker.internet.email()
+                    }], [{
+                        email: email,
+                        username: username
+                    }]
+                )
+                .catch(function(error) {
+                    expect(error.Errors.email).to.exist;
+
+                    expect(error.Errors.email[0].message)
+                        .to.equal(User.validationMessages.email.unique);
+
+                    done();
+                });
+        });
+
+    });
 
 });
