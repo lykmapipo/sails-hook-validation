@@ -7,7 +7,7 @@ sails-hook-validation
 
 [![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.svg)](https://gratipay.com/lykmapipo/)
 
-Custom validation error messages for sails model. Its works with `callback`, `deferred` and `promise` style model API provided with sails.
+Custom validation error messages for sails model. Its works with `callback`, `deferred` and `promise` style `model API` provided with sails.
 
 *Note: This requires Sails v0.11.0+.  If v0.11.0+ isn't published to NPM yet, you'll need to install it via Github.*
 
@@ -143,7 +143,7 @@ User
         //you will expect the following
         //error to exist on error.Errors based on 
         //your custom validation messages
-        
+
         expect(error.Errors.email).to.exist;
 
         expect(error.Errors.email[0].message)
