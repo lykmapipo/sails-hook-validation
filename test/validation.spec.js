@@ -27,6 +27,13 @@ describe('Hook#validation', function() {
                 expect(error.Errors.username[0].message)
                     .to.equal(User.validationMessages.username.required);
 
+                expect(error.Errors.birthday).to.exist;
+
+                expect(error.Errors.birthday[0].message)
+                    .to.equal(User.validationMessages.birthday.date);
+                expect(error.Errors.birthday[1].message)
+                    .to.equal(User.validationMessages.birthday.required);
+
                 done();
             });
     });
@@ -36,7 +43,8 @@ describe('Hook#validation', function() {
         User
             .create({
                 email: email,
-                username: username
+                username: username,
+                birthday: faker.date.past()
             }, function(error, user) {
                 expect(error).to.be.null;
                 expect(user).to.not.be.null;
@@ -51,7 +59,8 @@ describe('Hook#validation', function() {
             User
                 .create({
                     email: email,
-                    username: username
+                    username: username,
+                    birthday: faker.date.past()
                 }, function(error, user) {
                     expect(error.Errors.email).to.exist;
 
@@ -67,7 +76,8 @@ describe('Hook#validation', function() {
             User
                 .create({
                     email: email,
-                    username: username
+                    username: username,
+                    birthday: faker.date.past()
                 })
                 .exec(function(error, user) {
                     expect(error.Errors.email).to.exist;
@@ -85,7 +95,8 @@ describe('Hook#validation', function() {
             User
                 .create({
                     email: email,
-                    username: username
+                    username: username,
+                    birthday: faker.date.past()
                 })
                 .catch(function(error) {
                     expect(error.Errors.email).to.exist;
@@ -106,10 +117,12 @@ describe('Hook#validation', function() {
             User
                 .createEach([{
                     email: faker.internet.email(),
-                    username: faker.internet.userName()
+                    username: faker.internet.userName(),
+                    birthday: faker.date.past()
                 }, {
                     email: email,
-                    username: username
+                    username: username,
+                    birthday: faker.date.past()
                 }], function(error, users) {
                     expect(error.Errors.email).to.exist;
 
@@ -125,10 +138,12 @@ describe('Hook#validation', function() {
             User
                 .createEach([{
                     email: faker.internet.email(),
-                    username: faker.internet.userName()
+                    username: faker.internet.userName(),
+                    birthday: faker.date.past()
                 }, {
                     email: email,
-                    username: username
+                    username: username,
+                    birthday: faker.date.past()
                 }])
                 .exec(function(error, users) {
                     expect(error.Errors.email).to.exist;
@@ -145,10 +160,12 @@ describe('Hook#validation', function() {
             User
                 .createEach([{
                     email: faker.internet.email(),
-                    username: faker.internet.userName()
+                    username: faker.internet.userName(),
+                    birthday: faker.date.past()
                 }, {
                     email: email,
-                    username: username
+                    username: username,
+                    birthday: faker.date.past()
                 }])
                 .catch(function(error) {
                     expect(error.Errors.email).to.exist;
@@ -171,7 +188,8 @@ describe('Hook#validation', function() {
                     email: faker.internet.email()
                 }, {
                     email: email,
-                    username: username
+                    username: username,
+                    birthday: faker.date.past()
                 }, function(error, user) {
                     expect(error.Errors.email).to.exist;
 
@@ -190,7 +208,8 @@ describe('Hook#validation', function() {
                     email: faker.internet.email()
                 }, {
                     email: email,
-                    username: username
+                    username: username,
+                    birthday: faker.date.past()
                 })
                 .exec(function(error, user) {
                     expect(error.Errors.email).to.exist;
@@ -209,7 +228,8 @@ describe('Hook#validation', function() {
                     email: faker.internet.email()
                 }, {
                     email: email,
-                    username: username
+                    username: username,
+                    birthday: faker.date.past()
                 })
                 .catch(function(error) {
                     expect(error.Errors.email).to.exist;
@@ -233,7 +253,8 @@ describe('Hook#validation', function() {
                         email: faker.internet.email()
                     }], [{
                         email: email,
-                        username: username
+                        username: username,
+                        birthday: faker.date.past()
                     }],
                     function(error, users) {
                         expect(error.Errors.email).to.exist;
@@ -252,7 +273,8 @@ describe('Hook#validation', function() {
                         email: faker.internet.email()
                     }], [{
                         email: email,
-                        username: username
+                        username: username,
+                        birthday: faker.date.past()
                     }]
                 )
                 .exec(function(error, users) {
@@ -272,7 +294,8 @@ describe('Hook#validation', function() {
                         email: faker.internet.email()
                     }], [{
                         email: email,
-                        username: username
+                        username: username,
+                        birthday: faker.date.past()
                     }]
                 )
                 .catch(function(error) {
@@ -295,10 +318,12 @@ describe('Hook#validation', function() {
             User
                 .createEach([{
                     email: _email,
-                    username: faker.internet.userName()
+                    username: faker.internet.userName(),
+                    birthday: faker.date.past()
                 }, {
                     email: __email,
-                    username: faker.internet.userName()
+                    username: faker.internet.userName(),
+                    birthday: faker.date.past()
                 }], function(error, users) {
                     if (error) {
                         done(error);

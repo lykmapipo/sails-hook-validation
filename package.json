@@ -7,7 +7,8 @@
         "isHook": true
     },
     "scripts": {
-        "test": "npm link && npm link sails-hook-validation && ./node_modules/.bin/mocha --timeout 10000"
+        "pretest": "npm link && npm link sails-hook-validation",
+        "test": "./node_modules/.bin/mocha --timeout 10000"
     },
     "repository": {
         "type": "git",

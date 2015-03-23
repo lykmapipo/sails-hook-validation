@@ -12,6 +12,10 @@ module.exports = {
             type: 'email',
             required: true,
             unique: true
+        },
+        birthday: {
+            type: 'date',
+            required: true
         }
     },
     //validation messages definitions
@@ -23,6 +27,10 @@ module.exports = {
         },
         username: {
             required: 'Username is required'
+        },
+        birthday: {
+            required: 'Your birthday is required',
+            date: 'Birthday is not a valid date'
         }
     }
 
