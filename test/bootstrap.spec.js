@@ -1,3 +1,4 @@
+'use strict';
 /**
  * This file is useful when you want to execute some
  * code before and after running your tests
@@ -38,7 +39,7 @@ before(function(done) {
 after(function(done) {
     User
         .destroy()
-        .then(function(result) {
+        .then(function( /*result*/ ) {
             sails.lower(done);
         })
         .catch(function(error) {

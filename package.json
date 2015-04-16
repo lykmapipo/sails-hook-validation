@@ -8,7 +8,7 @@
     },
     "scripts": {
         "pretest": "npm link && npm link sails-hook-validation",
-        "test": "./node_modules/.bin/mocha --timeout 10000"
+        "test": "grunt test"
     },
     "repository": {
         "type": "git",
@@ -42,8 +42,12 @@
     "devDependencies": {
         "chai": "^2.0.0",
         "faker": "^2.1.2",
+        "grunt": "^0.4.5",
+        "grunt-contrib-jshint": "^0.11.1",
+        "grunt-mocha-test": "^0.12.7",
+        "jshint-stylish": "^1.0.1",
         "mocha": "^2.1.0",
-        "sails": "^0.11.0-rc10",
+        "sails": "^0.11.0",
         "sails-disk": "^0.10.7"
     }
 }
