@@ -27,7 +27,8 @@
         "constraints",
         "hook",
         "plugin",
-        "error"
+        "error",
+        "module"
     ],
     "author": {
         "name": "lykmapipo",
