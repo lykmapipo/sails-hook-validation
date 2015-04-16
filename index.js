@@ -1,3 +1,6 @@
+'use strict';
+
+//dependencies
 var path = require('path');
 var libPath = path.join(__dirname, 'lib');
 
@@ -20,37 +23,13 @@ var validate = require(path.join(libPath, 'validate'));
  * @param  {Object} sails a sails application instance
  */
 module.exports = function(sails) {
-    return {
-        initialize: function(done) {
-            var eventsToWaitFor = [];
-            //wait for orm
-            //and pub sub
-            //to be loaded
-            //for validation to be
-            //able to apply its patch
-            if (sails.hooks.orm) {
-                eventsToWaitFor.push('hook:orm:loaded');
-            }
-            if (sails.hooks.pubsub) {
-                eventsToWaitFor.push('hook:pubsub:loaded');
-            }
-
-            sails
-                .after(eventsToWaitFor, function() {
-                    //bind custom errors logic
-                    //and let sails to continue
-                    patch();
-
-                    done();
-                });
-        }
-    };
-
     //patch sails model
     //to add custom errors message
     //logic
     function patch() {
-        sails.util._(sails.models)
+        sails
+            .util
+            ._(sails.models)
             .forEach(function(model) {
                 //bind path validate
                 //on concrete models
@@ -78,7 +57,32 @@ module.exports = function(sails) {
 
                 }
             });
-    };
+    }
 
+    return {
+        initialize: function(done) {
+            var eventsToWaitFor = [];
+            //wait for orm
+            //and pub sub
+            //to be loaded
+            //for validation to be
+            //able to apply its patch
+            if (sails.hooks.orm) {
+                eventsToWaitFor.push('hook:orm:loaded');
+            }
+            if (sails.hooks.pubsub) {
+                eventsToWaitFor.push('hook:pubsub:loaded');
+            }
+
+            sails
+                .after(eventsToWaitFor, function() {
+                    //bind custom errors logic
+                    //and let sails to continue
+                    patch();
+
+                    done();
+                });
+        }
+    };
 
 };
