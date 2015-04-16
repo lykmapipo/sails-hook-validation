@@ -14,7 +14,9 @@ test
 *.swp
 *.swn
 *.swm
+*.log
 .jshintrc
 .editorconfig
 doc.html
 .travis.yml
+Gruntfile.js
