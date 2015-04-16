@@ -27,8 +27,9 @@ before(function(done) {
         }, function(error, sails) {
             if (error) {
                 return done(error);
+            } else {
+                done(null, sails);
             }
-            done(null, sails);
         });
 });
 
