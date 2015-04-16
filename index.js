@@ -23,10 +23,10 @@ module.exports = function(sails) {
     return {
         initialize: function(done) {
             var eventsToWaitFor = [];
-            //wait for orm 
+            //wait for orm
             //and pub sub
             //to be loaded
-            //for validation to be 
+            //for validation to be
             //able to apply its patch
             if (sails.hooks.orm) {
                 eventsToWaitFor.push('hook:orm:loaded');
@@ -50,7 +50,7 @@ module.exports = function(sails) {
     //to add custom errors message
     //logic
     function patch() {
-        _(sails.models)
+        sails.util._(sails.models)
             .forEach(function(model) {
                 //bind path validate
                 //on concrete models
