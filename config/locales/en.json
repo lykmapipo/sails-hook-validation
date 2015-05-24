@@ -1,0 +1,9 @@
+{
+    "authentication.email.required": "Email is required",
+    "authentication.email.email": "Provide valid email address",
+    "authentication.email.unique": "Email address is already taken",
+    "authentication.username.required": "Username is required",
+    "authentication.username.string": "Username is must be a valid string",
+    "authentication.birthday.required": "Birthday is required",
+    "authentication.birthday.date": "Birthday is not a valid date"
+}

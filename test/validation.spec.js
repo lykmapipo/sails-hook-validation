@@ -1,4 +1,6 @@
 'use strict';
+
+//dependencies
 var expect = require('chai').expect;
 var faker = require('faker');
 var email = faker.internet.email();

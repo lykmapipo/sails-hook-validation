@@ -1,0 +1,9 @@
+{
+    "authentication.email.required": "Barua pepe yahitajika",
+    "authentication.email.email": "Toa barua pepe iliyo halali",
+    "authentication.email.unique": "Barua pepe tayari ishachukuliwa",
+    "authentication.username.required": "Jina lahitajika",
+    "authentication.username.string": "Jina lazima liwe ni mchanganyiko wa herufi",
+    "authentication.birthday.required": "Siku ya kuzaliwa yahitajika",
+    "authentication.birthday.date": "Siku ya kuzaliwa sio tarehe"
+}

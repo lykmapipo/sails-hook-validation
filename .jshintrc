@@ -19,6 +19,7 @@
     "ignore": true,
     "globals": {
         "User": true,
+        "Authentication": true,
         "sails": true
     }
 }

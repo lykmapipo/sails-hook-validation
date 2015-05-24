@@ -1,10 +1,8 @@
 'use strict';
-/**
- * This file is useful when you want to execute some
- * code before and after running your tests
- * (e.g. lifting and lowering your sails application):
- */
+
+//dependencies
 var sails = require('sails');
+
 /**
  * Lifting sails before all tests
  */
@@ -40,6 +38,9 @@ before(function(done) {
 after(function(done) {
     User
         .destroy()
+        .then(function() {
+            return Authentication.destroy();
+        })
         .then(function( /*result*/ ) {
             sails.lower(done);
         })
