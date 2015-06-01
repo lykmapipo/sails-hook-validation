@@ -60,39 +60,63 @@ module.exports = function(sails) {
             });
     }
 
-    //export hook definition
+    function pathHTTPMiddlewares() {
+        //grab request locale from
+        //request.getLocale and set it to
+        //sails.config.i18n.requestLocale
+        function hookValidations(request, response, next) {
+            sails.config.i18n.requestLocale = request.getLocale();
+            console.log('custom validations');
+            next();
+        }
+
+        //remember current sails http config object
+        var previousMiddlewares = sails.config.http.middleware;
+
+        //remember current sails http middlewares order
+        var previousOrder = previousMiddlewares.order;
+
+        //grab the current index of the sails router middleware
+        //from sails middleware order
+        var indexOfRouter = previousOrder.indexOf('bodyParser') + 1;
+
+        //patching sails middleware and
+        //adding validation middleware
+        previousMiddlewares = sails.util._.extend(previousMiddlewares, {
+            hookValidations: hookValidations
+        });
+
+        //patching sails middleware order and add
+        //validation middleware before router in the middleware order
+        previousOrder.splice(indexOfRouter, 0, 'hookValidations');
+        previousMiddlewares.order = previousOrder;
+
+        //reconfigure sails http config object
+        sails.config.http.middleware = previousMiddlewares;
+    }
+
+    //export hook definitions
     return {
-        //intercent all request and current grab request locale
-        routes: {
-            before: {
-                'all /*': function grabLocale(request, response, next) {
-                    //configure i18n current request locale
-                    sails.config.i18n.requestLocale = request.getLocale();
-
-                    //continue
-                    next();
-                }
-            }
-        },
-
         initialize: function(done) {
             var eventsToWaitFor = [];
-
-            //wait for orm hook
+            //wait for orm
+            //and pub sub
             //to be loaded
+            //for validation to be
+            //able to apply its patch
             if (sails.hooks.orm) {
                 eventsToWaitFor.push('hook:orm:loaded');
             }
-
-            //wait for pub sub hook
-            //to be loaded
             if (sails.hooks.pubsub) {
                 eventsToWaitFor.push('hook:pubsub:loaded');
             }
 
-            //apply validation hook
             sails
                 .after(eventsToWaitFor, function() {
+                    //patch http to add request locale
+                    //extraction middleware
+                    pathHTTPMiddlewares();
+
                     //bind custom errors logic
                     //and let sails to continue
                     patch();
