@@ -14,6 +14,9 @@ var findOrCreateEach = require(path.join(libPath, 'findOrCreateEach'));
 var update = require(path.join(libPath, 'update'));
 var validate = require(path.join(libPath, 'validate'));
 
+//patch WLValidationError
+require(path.join(libPath, 'WLValidationError'));
+
 
 /**
  * @description allow model to define its custom validation error messages.

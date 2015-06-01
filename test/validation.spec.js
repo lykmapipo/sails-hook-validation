@@ -13,6 +13,31 @@ describe('Hook#validation', function() {
         done();
     });
 
+    it('should be able to serialize custom errors when toJSON is invoked', function(done) {
+        User
+            .create({}, function(error, user) {
+
+                var asJSON = error.toJSON();
+
+                expect(asJSON.Errors).to.exist;
+
+                done(null, user);
+            });
+    });
+
+
+    it('should be able to serialize custom errors when toPOJO is invoked', function(done) {
+        User
+            .create({}, function(error, user) {
+
+                var asPOJO = error.toPOJO();
+
+                expect(asPOJO.Errors).to.exist;
+
+                done(null, user);
+            });
+    });
+
     it('should throw custom errors', function(done) {
         User
             .create({}, function(error, user) {
