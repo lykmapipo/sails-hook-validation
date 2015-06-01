@@ -1,6 +1,6 @@
 {
     "name": "sails-hook-validation",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "description": "Custom validation error messages for sails model with i18n support",
     "main": "index.js",
     "sails": {
@@ -16,7 +16,9 @@
     },
     "keywords": [
         "sails",
+        "sails-hook",
         "model",
+        "validator",
         "validation",
         "validate",
         "custom",
@@ -25,6 +27,8 @@
         "database",
         "exceptions",
         "constraints",
+        "i18n",
+        "internationalization",
         "hook",
         "plugin",
         "error",
