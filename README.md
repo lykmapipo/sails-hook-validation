@@ -7,7 +7,7 @@ sails-hook-validation
 
 [![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.svg)](https://gratipay.com/lykmapipo/)
 
-Custom validation error messages for sails model. Its works with `callback`, `deferred` and `promise` style `model API` provided with sails.
+Custom validation error messages for sails model with i18n support. Its works with `callback`, `deferred` and `promise` style `model API` provided with sails.
 
 *Note: This requires Sails v0.11.0+.  If v0.11.0+ isn't published to NPM yet, you'll need to install it via Github.*
 
@@ -17,6 +17,8 @@ $ npm install --save sails-hook-validation
 ```
 
 ## Usage
+
+### Use without i18n
 Add `validationMessages` static property in your sails model
 ```js
 //this is example
@@ -45,6 +47,58 @@ module.exports = {
     }
 };
 ```
+
+### Use with i18n
+Add validation messages into `config/locale` files following `modelId.attribute.rule`. If model contains any `validationMessages` definition, they will take precedence over locale defined messages.
+
+Example
+```javascript
+//define your model in api/model/Authentication.js
+module.exports = {
+    attributes: {
+        username: {
+            type: 'string',
+            required: true
+        },
+        email: {
+            type: 'email',
+            required: true,
+            unique: true
+        },
+        birthday: {
+            type: 'date',
+            required: true
+        }
+    }
+};
+```
+
+Then define validation messages per locale
+
+```javascript
+//in config/locale/en.json
+{
+    "authentication.email.required": "Email is required",
+    "authentication.email.email": "Provide valid email address",
+    "authentication.email.unique": "Email address is already taken",
+    "authentication.username.required": "Username is required",
+    "authentication.username.string": "Username is must be a valid string",
+    "authentication.birthday.required": "Birthday is required",
+    "authentication.birthday.date": "Birthday is not a valid date"
+}
+
+//in config/locale/sw.json
+{
+    "authentication.email.required": "Barua pepe yahitajika",
+    "authentication.email.email": "Toa barua pepe iliyo halali",
+    "authentication.email.unique": "Barua pepe tayari ishachukuliwa",
+    "authentication.username.required": "Jina lahitajika",
+    "authentication.username.string": "Jina lazima liwe ni mchanganyiko wa herufi",
+    "authentication.birthday.required": "Siku ya kuzaliwa yahitajika",
+    "authentication.birthday.date": "Siku ya kuzaliwa sio tarehe"
+}
+```
+
 Now you can call model static 
 - `create()`
 - `createEach()`

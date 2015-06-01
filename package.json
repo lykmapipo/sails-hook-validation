@@ -1,69 +1,65 @@
 {
-  "name": "sails-hook-validation",
-  "version": "0.2.1",
-  "description": "Custom validation error messages for sails model",
-  "main": "index.js",
-  "sails": {
-    "isHook": true
-  },
-  "scripts": {
-    "pretest": "npm link && npm link sails-hook-validation",
-    "test": "grunt test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lykmapipo/sails-hook-validation.git"
-  },
-  "keywords": [
-    "sails",
-    "model",
-    "validation",
-    "validate",
-    "custom",
-    "messages",
-    "define",
-    "database",
-    "exceptions",
-    "constraints",
-    "hook",
-    "plugin",
-    "error",
-    "module"
-  ],
-  "author": {
-    "name": "lykmapipo",
-    "email": "lallyelias87@gmail.com",
-    "url": "https://github.com/lykmapipo"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/lykmapipo/sails-hook-validation/issues"
-  },
-  "homepage": "https://github.com/lykmapipo/sails-hook-validation",
-  "contributors": [
-    {
-      "name": "lykmapipo",
-      "github": "https://github.com/lykmapipo"
+    "name": "sails-hook-validation",
+    "version": "0.2.1",
+    "description": "Custom validation error messages for sails model with i18n support",
+    "main": "index.js",
+    "sails": {
+        "isHook": true
     },
-    {
-      "name": "isery",
-      "github": "https://github.com/isery"
+    "scripts": {
+        "pretest": "npm link && npm link sails-hook-validation",
+        "test": "grunt test"
     },
-    {
-      "name": "Alaneor",
-      "github": "https://github.com/Alaneor"
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lykmapipo/sails-hook-validation.git"
+    },
+    "keywords": [
+        "sails",
+        "model",
+        "validation",
+        "validate",
+        "custom",
+        "messages",
+        "define",
+        "database",
+        "exceptions",
+        "constraints",
+        "hook",
+        "plugin",
+        "error",
+        "module"
+    ],
+    "author": {
+        "name": "lykmapipo",
+        "email": "lallyelias87@gmail.com",
+        "url": "https://github.com/lykmapipo"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/lykmapipo/sails-hook-validation/issues"
+    },
+    "homepage": "https://github.com/lykmapipo/sails-hook-validation",
+    "contributors": [{
+        "name": "lykmapipo",
+        "github": "https://github.com/lykmapipo"
+    }, {
+        "name": "isery",
+        "github": "https://github.com/isery"
+    }, {
+        "name": "Alaneor",
+        "github": "https://github.com/Alaneor"
+    }],
+    "devDependencies": {
+        "chai": "^2.0.0",
+        "faker": "^2.1.2",
+        "grunt": "^0.4.5",
+        "grunt-contrib-jshint": "^0.11.1",
+        "grunt-mocha-test": "^0.12.7",
+        "jshint-stylish": "^1.0.1",
+        "mocha": "^2.1.0",
+        "sails": "^0.11.0",
+        "sails-disk": "^0.10.7",
+        "supertest": "^1.0.1"
     }
-  ],
-  "devDependencies": {
-    "chai": "^2.0.0",
-    "faker": "^2.1.2",
-    "grunt": "^0.4.5",
-    "grunt-contrib-jshint": "^0.11.1",
-    "grunt-mocha-test": "^0.12.7",
-    "jshint-stylish": "^1.0.1",
-    "mocha": "^2.1.0",
-    "sails": "^0.11.0",
-    "sails-disk": "^0.10.7",
-    "supertest": "^1.0.1"
-  }
 }
