@@ -53,6 +53,9 @@
     }, {
         "name": "Alaneor",
         "github": "https://github.com/Alaneor"
+    }, {
+        "name": "VMBindraban",
+        "github": "https://github.com/VMBindraban"
     }],
     "devDependencies": {
         "chai": "^2.0.0",
