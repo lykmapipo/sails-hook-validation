@@ -38,6 +38,24 @@ describe('Hook#validation', function() {
             });
     });
 
+    it('should be able to serialize custom errors when toPOJO is invoked and use custom Errors key', function(done) {
+        sails.config.errors = {
+          errorKey: 'customErrors'
+        };
+
+        User
+            .create({}, function(error, user) {
+
+                var asPOJO = error.toPOJO();
+
+                expect(asPOJO.customErrors).to.exist;
+
+                delete sails.config.errors;
+
+                done(null, user);
+            });
+    });
+
     it('should throw custom errors', function(done) {
         User
             .create({}, function(error, user) {
