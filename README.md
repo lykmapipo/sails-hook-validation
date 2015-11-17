@@ -3,13 +3,13 @@ sails-hook-validation
 
 [![Build Status](https://travis-ci.org/lykmapipo/sails-hook-validation.svg?branch=master)](https://travis-ci.org/lykmapipo/sails-hook-validation)
 
-[![Tips](https://img.shields.io/gratipay/lykmapipo.svg)](https://gratipay.com/lykmapipo/)
-
-[![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.svg)](https://gratipay.com/lykmapipo/)
-
 Custom validation error messages for sails model with i18n support. Its works with `callback`, `deferred` and `promise` style `model API` provided with sails.
 
-*Note: This requires Sails v0.11.0+.  If v0.11.0+ isn't published to NPM yet, you'll need to install it via Github.*
+*Note:* 
+- *This requires Sails v0.11.0+.  If v0.11.0+ isn't published to NPM yet, you'll need to install it via Github.*
+- *`sails-hook-validation` work by patch model static `validate()`, `create()`, `createEach()`, `findOrCreate()`, `findOrCreateEach()` and `update()`.*
+- *To have custom error messages at model instance level consider using [sails-model-new](https://github.com/lykmapipo/sails-model-new).*
+- *`sails-hook-validation` opt to use `error.Errors` and not to re-create or remove any properties of error object so as to remain with sails legacy options*
 
 ## Installation
 ```sh
@@ -228,11 +228,6 @@ User
         done();
     });
 ```
-
-*Note:* 
-- *`sails-hook-validation` work by patch model static `validate()`, `create()`, `createEach()`, `findOrCreate()`, `findOrCreateEach()` and `update()`.*
-- *To have custom error messages at model instance level consider using [sails-model-new](https://github.com/lykmapipo/sails-model-new).*
-- *`sails-hook-validation` opt to use `error.Errors` and not to re-create or remove any properties of error object so as to remain with sails legacy options*
 
 ## Testing
 
