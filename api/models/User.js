@@ -5,17 +5,21 @@
 module.exports = {
     attributes: {
         username: {
-            type: 'string',
-            required: true
+            required: true,
+            type: 'string'
         },
         email: {
-            type: 'email',
             required: true,
+            type: 'email',
             unique: true
         },
         birthday: {
-            type: 'date',
-            required: true
+            required: true,
+            type: 'date'
+        },
+        nickname: {
+            type: 'string',
+            minLength: 2
         }
     },
     
