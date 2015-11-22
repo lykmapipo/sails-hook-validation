@@ -63,11 +63,9 @@ describe('Hook#validation', function() {
                 expect(error.Errors.email).to.exist;
 
                 expect(error.Errors.email[0].message)
-                    .to.equal(User.validationMessages.email.email);
-
-                expect(error.Errors.email[1].message)
                     .to.equal(User.validationMessages.email.required);
-
+                expect(error.Errors.email[1].message)
+                    .to.equal(User.validationMessages.email.email);
 
                 expect(error.Errors.username).to.exist;
                 expect(error.Errors.username[0].message)
@@ -76,10 +74,24 @@ describe('Hook#validation', function() {
                 expect(error.Errors.birthday).to.exist;
 
                 expect(error.Errors.birthday[0].message)
-                    .to.equal(User.validationMessages.birthday.date);
-                expect(error.Errors.birthday[1].message)
                     .to.equal(User.validationMessages.birthday.required);
+                expect(error.Errors.birthday[1].message)
+                    .to.equal(User.validationMessages.birthday.date);
 
+                done(null, user);
+            });
+    });
+
+    it('should throw error when the error message or field key is not specificied', function(done) {
+
+        User
+            .create({
+                email: email,
+                username: username,
+                birthday: faker.date.past(),
+                nickname: 'c'
+            }, function(error, user) {
+                expect(error.Errors.nickname).to.exist;
                 done(null, user);
             });
     });
