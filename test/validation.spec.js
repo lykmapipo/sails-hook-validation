@@ -40,7 +40,7 @@ describe('Hook#validation', function() {
 
     it('should be able to serialize custom errors when toPOJO is invoked and use custom Errors key', function(done) {
         sails.config.errors = {
-          errorKey: 'customErrors'
+            errorKey: 'customErrors'
         };
 
         User

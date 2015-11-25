@@ -22,7 +22,7 @@ module.exports = {
             minLength: 2
         }
     },
-    
+
     //validation messages definitions
     validationMessages: { //hand for i18n & l10n
         email: {
