@@ -1,6 +1,6 @@
 {
     "name": "sails-hook-validation",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "description": "Custom validation error messages for sails model with i18n support",
     "main": "index.js",
     "sails": {
@@ -64,12 +64,12 @@
         "grunt-contrib-jshint": "^0.11.3",
         "grunt-mocha-test": "^0.12.7",
         "jshint-stylish": "^1.0.2",
-        "mocha": "^2.3.4",
+        "mocha": "^2.4.5",
         "sails": "^0.11.2",
         "sails-disk": "^0.10.8",
         "supertest": "^1.1.0"
     },
     "dependencies": {
-        "waterline": "^0.10.28"
+        "waterline": "^0.10.31"
     }
 }
