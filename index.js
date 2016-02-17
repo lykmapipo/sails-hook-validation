@@ -33,8 +33,8 @@ module.exports = function(sails) {
     function patch() {
         sails
             .util
-            ._(sails.models)
-            .forEach(function(model) {
+            ._
+            .forEach(sails.models, function(model) {
                 //bind path validate
                 //on concrete models
                 //and left derived model
