@@ -70,7 +70,7 @@ module.exports = function(sails) {
             before: {
                 'all /*': function grabLocale(request, response, next) {
                     //configure i18n current request locale
-                    if(request && typeof request.getLocale === 'function){
+                    if(request && typeof request.getLocale === 'function'){
                         sails.config.i18n.requestLocale = request.getLocale();
                     }
 
