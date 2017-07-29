@@ -31,36 +31,34 @@ module.exports = function(sails) {
     //to add custom errors message
     //logic
     function patch() {
-        sails
-            .util
-            ._
-            .forEach(sails.models, function(model) {
-                //bind path validate
-                //on concrete models
-                //and left derived model
-                //build from associations
-                if (model.globalId) {
+        (_ || sails.util._)
+        .forEach(sails.models, function(model) {
+            //bind path validate
+            //on concrete models
+            //and left derived model
+            //build from associations
+            if (model.globalId) {
 
-                    //patch sails `create()` method
-                    create(model, validateCustom);
+                //patch sails `create()` method
+                create(model, validateCustom);
 
-                    //patch sails `createEach()` method
-                    createEach(model, validateCustom);
+                //patch sails `createEach()` method
+                createEach(model, validateCustom);
 
-                    //patch sails `findOrCreate()` method
-                    findOrCreate(model, validateCustom);
+                //patch sails `findOrCreate()` method
+                findOrCreate(model, validateCustom);
 
-                    //patch sails `findOrCreateEach()` method
-                    findOrCreateEach(model, validateCustom);
+                //patch sails `findOrCreateEach()` method
+                findOrCreateEach(model, validateCustom);
 
-                    //patch sails `update()` method
-                    update(model, validateCustom);
+                //patch sails `update()` method
+                update(model, validateCustom);
 
-                    //patch sails `validate()` method
-                    validate(model, validateCustom);
+                //patch sails `validate()` method
+                validate(model, validateCustom);
 
-                }
-            });
+            }
+        });
     }
 
     //export hook definition
