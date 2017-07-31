@@ -20,6 +20,7 @@
     "globals": {
         "User": true,
         "Authentication": true,
-        "sails": true
+        "sails": true,
+        "_": true
     }
 }
