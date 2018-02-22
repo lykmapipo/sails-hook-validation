@@ -1,5 +1,5 @@
 {
-    "name": "sails-hook-validation",
+    "name": "@floatplane/sails-hook-validation",
     "version": "0.5.0",
     "description": "Custom validation error messages for sails model with i18n support",
     "main": "index.js",
@@ -12,7 +12,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/lykmapipo/sails-hook-validation.git"
+        "url": "https://github.com/fpm-git/sails-hook-validation.git"
     },
     "keywords": [
         "sails",
@@ -41,9 +41,9 @@
     },
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/lykmapipo/sails-hook-validation/issues"
+        "url": "https://github.com/fpm-git/sails-hook-validation/issues"
     },
-    "homepage": "https://github.com/lykmapipo/sails-hook-validation",
+    "homepage": "https://github.com/fpm-git/sails-hook-validation",
     "contributors": [{
         "name": "lykmapipo",
         "github": "https://github.com/lykmapipo"
