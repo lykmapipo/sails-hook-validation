@@ -1,19 +1,17 @@
 sails-hook-validation
 =====================
 
-[![Build Status](https://travis-ci.org/lykmapipo/sails-hook-validation.svg?branch=master)](https://travis-ci.org/lykmapipo/sails-hook-validation)
+[![Build Status](https://travis-ci.org/fpm-git/sails-hook-validation.svg?branch=master)](https://travis-ci.org/fpm-git/sails-hook-validation)
 
 Custom validation error messages for sails model with i18n support. Its works with `callback`, `deferred` and `promise` style `model API` provided with sails.
 
 *Note:* 
-- *This requires Sails v0.11.0+.  If v0.11.0+ isn't published to NPM yet, you'll need to install it via Github.*
 - *`sails-hook-validation` work by patch model static `validate()`, `create()`, `createEach()`, `findOrCreate()`, `findOrCreateEach()` and `update()`.*
-- *To have custom error messages at model instance level consider using [sails-model-new](https://github.com/lykmapipo/sails-model-new).*
 - *`sails-hook-validation` opt to use `error.Errors` and not to re-create or remove any properties of error object so as to remain with sails legacy options*
 
 ## Installation
 ```sh
-$ npm install --save sails-hook-validation
+$ npm install --save '@floatplane/sails-hook-validation'
 ```
 
 ## Usage
