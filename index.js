@@ -61,6 +61,9 @@ module.exports = function(sails) {
         });
     }
 
+    if (sails.config.i18n.hookValidation == undefined)
+	    sails.config.i18n.hookValidation = true;
+
     //export hook definition
     return {
         //intercent all request and current grab request locale
@@ -77,7 +80,6 @@ module.exports = function(sails) {
                 }
             }
         },
-
         initialize: function(done) {
             var eventsToWaitFor = [];
 
