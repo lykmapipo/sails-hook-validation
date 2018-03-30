@@ -61,8 +61,9 @@ module.exports = function(sails) {
         });
     }
 
-    if (sails.config.i18n.hookValidation == undefined)
-	    sails.config.i18n.hookValidation = true;
+    if (sails.config.i18n.hookValidation === undefined) {
+        sails.config.i18n.hookValidation = true;
+    }
 
     //export hook definition
     return {
